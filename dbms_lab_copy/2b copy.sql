@@ -1,44 +1,35 @@
--- Create the Student Database
-CREATE DATABASE IF NOT EXISTS StudentDB;
-USE StudentDB;
+CREATE TABLE EMPLOYEE
+(
+ EMP_ID INT PRIMARY KEY ,  
+LAST_NAME VARCHAR(60), 
+JOB_ID INT , 
+SALARY DECIMAL(50,4)
+); 
 
--- Create the EMP table
-CREATE TABLE EMP (
-    emp_id INT PRIMARY KEY,
-    last_name VARCHAR(255),
-    job_id VARCHAR(255),
-    salary DECIMAL(10, 2)
-);
+INSERT INTO EMPLOYEE(EMP_ID , LAST_NAME , JOB_ID , SALARY )
+    VALUES
+    (1,'BHOSALE' , 'MANAGER' , 100000),
+    (2,'CHOUDHARI','EMP_1', 90000),
+    (3,'KOTE' , 'EMP_2', 80000),
+    (4,'THAKARE' , 'EMP_3',70000),
+    (5,'JADHAV','MANAGER',110000),
 
--- Insert data into the EMP table
-INSERT INTO EMP (emp_id, last_name, job_id, salary)
-VALUES
-    (1, 'John', 'MANAGER', 50000.00),
-    (2, 'Alice', 'MANAGER', 55000.00),
-    (3, 'Bob', 'CLERK', 30000.00),
-    (4, 'Charlie', 'CLERK', 28000.00),
-    (5, 'David', 'ANALYST', 60000.00),
-    (6, 'Eve', 'ANALYST', 62000.00);
+-- Q1. Find out all employees having salary less than all managers he should not be manager
+SELECT E1.*
+    FROM EMPLOYEE E1
+    WHERE E1.JOB_ID != 'MANAGER'
+    AND E1.SALARY < ALL (
+         SELECT SALARY
+         FROM EMPLOYEE E2
+         WHERE E2.JOB_ID = 'MANAGER'
+     );
 
--- Q1. Find out all employees having salary less than all managers, and they should not be managers.
-SELECT E1.emp_id, E1.last_name, E1.salary
-FROM EMP E1
-WHERE E1.job_id <> 'MANAGER'
-AND E1.salary < ALL (
-    SELECT E2.salary
-    FROM EMP E2
-    WHERE E2.job_id = 'MANAGER'
-);
-
--- Q2. Find out all employees having a salary not equal to any of the managers' salaries, and they should not be managers.
-SELECT E1.emp_id, E1.last_name, E1.salary
-FROM EMP E1
-WHERE E1.job_id <> 'MANAGER'
-AND E1.salary <> ALL (
-    SELECT E2.salary
-    FROM EMP E2
-    WHERE E2.job_id = 'MANAGER'
-);
-
--- Drop the StudentDB database
--- DROP DATABASE StudentDB;
+-- Q2. Find out all employees having salary not equal to any of the managers salary he should not be manager
+SELECT E1.*
+    FROM EMPLOYEE E1
+    WHERE E1.JOB_ID != 'MANAGER'
+    AND E1.SALARY <> ALL (
+         SELECT DISTINCT SALARY
+         FROM EMPLOYEE E2
+         WHERE E2.JOB_ID = 'MANAGER'
+     );
