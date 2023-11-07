@@ -1,0 +1,51 @@
+The provided code is a Python script that implements a game of Tic-Tac-Toe with a player competing against a computer opponent. The computer opponent uses the Minimax algorithm with Alpha-Beta Pruning to make its moves. Let's break down the code step by step:
+
+1. **Board Representation:**
+   The Tic-Tac-Toe board is represented as a 3x3 grid using a list of lists called `board`, where 0 represents an empty cell, 1 represents 'X', and -1 represents 'O'. The board is initialized to all zeros at the beginning.
+
+2. **Gameboard Function:**
+   The `Gameboard` function is used to print the current state of the board. It maps the numeric values in the `board` to their corresponding characters ('X', 'O', or a space for an empty cell) and displays the board in a user-friendly format.
+
+3. **Clearboard Function:**
+   The `Clearboard` function clears the game board by setting all cells to 0, indicating empty.
+
+4. **Winning Player Function:**
+   The `winningPlayer` function checks if a given player has won the game. It checks all possible winning conditions: three in a row, three in a column, and two diagonals. If the player has won, it returns `True`; otherwise, it returns `False`.
+
+5. **GameWon Function:**
+   The `gameWon` function checks if either player (X or O) has won the game. It calls the `winningPlayer` function for both players and returns `True` if either player has won; otherwise, it returns `False`.
+
+6. **PrintResult Function:**
+   The `printResult` function prints the result of the game, indicating whether 'X' or 'O' has won or if the game is a draw.
+
+7. **Blanks Function:**
+   The `blanks` function returns a list of coordinates of empty cells on the board.
+
+8. **BoardFull Function:**
+   The `boardFull` function checks if the board is full, i.e., if there are no empty cells left. It returns `True` if the board is full and `False` otherwise.
+
+9. **SetMove Function:**
+   The `setMove` function sets a player's move on the board by updating the corresponding cell with the player's value (1 for 'X' and -1 for 'O').
+
+10. **PlayerMove Function:**
+    The `playerMove` function allows the human player to make a move by entering a number between 1 and 9 to represent their choice of cell. It checks if the move is valid, and if not, it prompts the player to try again.
+
+11. **GetScore Function:**
+    The `getScore` function returns a score based on the outcome of the game. It assigns a score of 10 if 'X' wins, -10 if 'O' wins, and 0 for a draw.
+
+12. **abminimax Function:**
+    The `abminimax` function implements the Minimax algorithm with Alpha-Beta Pruning to make optimal moves for both players. It explores possible moves and their outcomes, keeping track of the best move based on the Minimax algorithm and pruning branches of the search tree when possible to improve efficiency.
+
+13. **o_comp and x_comp Functions:**
+    These functions are responsible for making moves for the computer opponents ('O' and 'X') using the `abminimax` algorithm. They consider the current state of the board and choose the best move based on the Minimax algorithm.
+
+14. **makeMove Function:**
+    The `makeMove` function determines which player's turn it is and calls the appropriate function to make a move, either `playerMove` for the human player or `o_comp`/`x_comp` for the computer opponents.
+
+15. **pvc Function (Player vs. Computer):**
+    The `pvc` function sets up a game of Tic-Tac-Toe for a player to compete against the computer. It allows the player to choose whether they want to play as 'X' or 'O' and then proceeds with the game, alternating turns between the player and the computer opponent. It checks for the game's outcome and prints the result.
+
+16. **Driver Code:**
+    The script starts by printing a title and calling the `pvc` function to set up and play the game of Tic-Tac-Toe between the player and the computer.
+
+The game is designed to be played against a computer opponent, which makes optimal moves using the Minimax algorithm with Alpha-Beta Pruning, providing a challenging experience for the player.
