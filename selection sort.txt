@@ -1,0 +1,27 @@
+The provided code is an implementation of the Selection Sort algorithm in Python. Selection Sort is a simple comparison-based sorting algorithm that repeatedly selects the minimum element from the unsorted portion of the array and moves it to the beginning of the sorted portion. Here's an explanation of the code:
+
+1. `selection_sort(arr)`: This is the main function for performing the selection sort. It takes an input list `arr` and sorts it in ascending order.
+
+2. `n = len(arr)`: This line calculates the length of the input list, which is the number of elements in the list.
+
+3. The outer loop, defined by `for i in range(n):`, iterates through each element of the array from the first (leftmost) element to the last element.
+
+4. Inside the outer loop, a variable `min_index` is initialized with the current index `i`. This `min_index` will be used to keep track of the index with the minimum value in the unsorted portion of the array.
+
+5. The inner loop, defined by `for j in range(i + 1, n):`, iterates through the unsorted portion of the array, starting from the element just to the right of the current element `i`.
+
+6. Inside the inner loop, there is a comparison: `if arr[j] < arr[min_index]:`. This comparison checks whether the element at the current index `j` is less than the element at `min_index`. If it is, it updates `min_index` to `j`, indicating that `arr[j]` is the new minimum element found in the unsorted portion of the array.
+
+7. After the inner loop completes, the code has determined the index of the minimum element in the unsorted portion of the array.
+
+8. The minimum element is then swapped with the element at the current index `i` to place the minimum element at the beginning of the sorted portion. This is done with the line: `arr[i], arr[min_index] = arr[min_index], arr[i]`.
+
+9. The outer loop continues with the next element, and the process is repeated for each remaining unsorted portion of the array until the entire array is sorted.
+
+10. In the `if __name__ == "__main__":` block, an example list `arr` is defined, and its original contents are printed.
+
+11. The `selection_sort` function is called to sort the `arr` list in ascending order.
+
+12. Finally, the sorted array is printed, showing the elements in ascending order.
+
+This code demonstrates the Selection Sort algorithm's implementation, and it sorts the provided list `arr` in ascending order. The time complexity of Selection Sort is O(n^2), where 'n' is the number of elements in the list, making it suitable for small to moderate-sized lists.
