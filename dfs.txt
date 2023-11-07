@@ -1,0 +1,45 @@
+The provided code is a Python script that implements a depth-first search (DFS) traversal on a graph. Similar to the previous code for BFS, this script allows you to input a graph with nodes and their neighbors and then performs a DFS traversal starting from a specified node. Let's break down the code step by step:
+
+1. Definition of the `dfs` function:
+   ```python
+   def dfs(graph, start):
+       visited = set()  # Keep track of visited nodes
+       stack = [start]  # Use a stack for DFS
+
+       print("DFS Traversal:")
+       while stack:
+           node = stack.pop()
+           if node not in visited:
+               print(node, end=' ')
+               visited.add(node)
+               # Push unvisited neighbors onto the stack in reverse order.
+               for neighbor in reversed(graph.get(node, [])):
+                   if neighbor not in visited:
+                       stack.append(neighbor)
+   ```
+
+   This function is similar to the previous `bfs` function but is adapted for DFS. It takes two arguments:
+   - `graph`: A dictionary representing the graph, where keys are node names, and values are lists of neighbors for each node.
+   - `start`: The node from which the DFS traversal should begin.
+
+   Inside the function:
+   - `visited` is a set used to keep track of visited nodes to avoid revisiting them.
+   - `stack` is a list initialized with the starting node. It will be used for the DFS traversal.
+
+   The main part of the function is a while loop that continues as long as there are nodes in the stack. In each iteration of the loop:
+   - The node at the top of the stack is popped and stored in the `node` variable.
+   - If the `node` has not been visited, it is printed (indicating that it has been visited), and its name is added to the `visited` set.
+   - Unvisited neighbors of the current node are pushed onto the stack in reverse order. This ensures that the node with the highest index in the list of neighbors will be at the top of the stack, making it the next node to be explored. This behavior is consistent with the depth-first approach.
+
+2. Building the graph using user input:
+   The script allows the user to input the graph by providing nodes and their neighbors in the same format as the previous code.
+
+3. Starting the DFS traversal:
+   After constructing the graph, the user is prompted to enter a starting node for the DFS traversal. The code checks if the entered start node exists in the graph and then calls the `dfs` function with the provided graph and start node as arguments to initiate the DFS traversal.
+
+   If the start node is not found in the graph, an error message is displayed.
+
+4. Printing the DFS traversal:
+   The DFS traversal process prints the visited nodes one by one, following the depth-first order. The order in which nodes are visited depends on the order in which they are pushed onto the stack.
+
+This code provides a simple implementation of DFS traversal for a user-defined graph, making it easy to understand how DFS explores nodes in a depth-first manner.
