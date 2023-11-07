@@ -1,0 +1,23 @@
+The provided Python code is a program to solve the N-Queens problem using a backtracking algorithm. This problem asks for all possible ways to place N queens on an N×N chessboard so that no two queens threaten each other (i.e., they are not in the same row, column, or diagonal). Here's an explanation of the code:
+
+1. `N = int(input("Enter N: "))`: The user is prompted to enter the value of N, which determines the size of the N×N chessboard.
+
+2. `printSolution(board)`: This function is used to print the solution board. It iterates through the 2D array `board` and prints it in a human-readable format.
+
+3. `isSafe(board, row, col)`: This function checks whether it's safe to place a queen in a specific cell on the board. It checks three conditions:
+   - No queen in the same row
+   - No queen in the upper-left diagonal
+   - No queen in the lower-left diagonal
+
+   If all these conditions are met, the function returns `True`, indicating it's safe to place a queen; otherwise, it returns `False`.
+
+4. `solveNQUtil(board, col)`: This is a recursive utility function used to solve the N-Queens problem. It considers a column (`col`) and attempts to place a queen in each row of that column. It uses backtracking to explore different possibilities:
+   - If all queens are placed (i.e., `col` is greater than or equal to N), it returns `True`, indicating a solution was found.
+   - Otherwise, for each row in the current column, it checks if it's safe to place a queen there. If it is safe, it places a queen, recursively calls `solveNQUtil` for the next column, and checks if it leads to a solution. If it does, it returns `True`. If it doesn't, it backtracks by removing the queen from the current cell (`board[i][col] = 0`) and continues checking other rows.
+   - If no safe position is found in any row in the current column, it returns `False`.
+
+5. `solveNQ()`: This is the main function that initializes the chessboard, and then it calls the `solveNQUtil` function starting from the first column (`col = 0`). If a solution is found, it prints the board configuration; otherwise, it prints "Solution does not exist."
+
+6. Finally, the driver program `solveNQ()` is called to solve the N-Queens problem for the value of N entered by the user.
+
+The program recursively explores different configurations of queens on the chessboard and backtracks when it encounters a situation where it's impossible to place all the queens without conflicts. If a solution exists, it prints the solution; otherwise, it informs the user that no solution is found.
