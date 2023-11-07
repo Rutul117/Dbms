@@ -1,0 +1,59 @@
+The provided code is a Python script that implements a breadth-first search (BFS) traversal on a graph. It allows you to input a graph with nodes and their neighbors and then performs a BFS traversal starting from a specified node. Let's break down the code step by step:
+
+1. Importing the necessary module:
+   ```python
+   from collections import deque
+   ```
+
+   The code begins by importing the `deque` class from the `collections` module. A deque (double-ended queue) is used as a data structure to efficiently implement the queue for the BFS algorithm.
+
+2. Definition of the `bfs` function:
+   ```python
+   def bfs(graph, start):
+       visited = set()  # Keep track of visited nodes
+       queue = deque([start])  # Use a queue for BFS
+       visited.add(start)
+
+       while queue:
+           node = queue.popleft()
+           print(node, end=' ')
+
+           for neighbor in graph.get(node, []):
+               if neighbor not in visited:
+                   queue.append(neighbor)
+                   visited.add(neighbor)
+   ```
+
+   This function takes two arguments:
+   - `graph`: A dictionary that represents the graph. The keys are node names, and the values are lists of neighbors for each node.
+   - `start`: The node from which the BFS traversal should begin.
+
+   Inside the function:
+   - `visited` is a set used to keep track of visited nodes to avoid revisiting them.
+   - `queue` is a deque initialized with the starting node. It will be used for the BFS traversal.
+   - The starting node is added to the `visited` set.
+
+   The main part of the function is a while loop that continues as long as there are nodes in the queue. In each iteration of the loop:
+   - The node at the front of the queue is dequeued and stored in the `node` variable.
+   - The `node` is printed (indicating that it has been visited).
+   - For each neighbor of the current node (retrieved from the graph dictionary using `graph.get(node, [])`), if the neighbor has not been visited, it is added to the queue and marked as visited in the `visited` set.
+
+3. Building the graph using user input:
+   The script allows the user to input the graph by providing nodes and their neighbors in the following format:
+
+   ```
+   Enter a node (or press Enter to finish): [Node]
+   Enter neighbors for node [Node] (space-separated): [Neighbor1 Neighbor2 ...]
+   ```
+
+   The user can continue adding nodes and their neighbors until they press Enter without entering a node.
+
+4. Starting the BFS traversal:
+   After constructing the graph, the user is prompted to enter a starting node for the BFS traversal. The code checks if the entered start node exists in the graph and then calls the `bfs` function with the provided graph and start node as arguments to initiate the BFS traversal.
+
+   If the start node is not found in the graph, an error message is displayed.
+
+5. Printing the BFS traversal:
+   The BFS traversal process prints the visited nodes one by one, following the BFS order.
+
+Overall, this code is a simple implementation of BFS traversal for a user-defined graph, making it easy to visualize and understand the order in which nodes are visited.
