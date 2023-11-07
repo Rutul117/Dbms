@@ -1,0 +1,26 @@
+This code implements the Prim's algorithm for finding the Minimum Spanning Tree (MST) in a graph. Here's a breakdown of the code and its functionality:
+
+1. `INF = 9999999`: This constant is used to represent a large value, typically used to initialize minimum variables.
+
+2. `N = int(input("Enter the number of vertices in the graph: "))`: The user is prompted to enter the number of vertices in the graph.
+
+3. Graph Initialization:
+   - `G = []`: An empty list is created to represent the graph (adjacency matrix).
+   - A loop is used to input the adjacency matrix row by row. The user is prompted to enter the adjacency matrix row for each vertex. Each row is split into a list of integers, and these lists are appended to `G`. This way, the adjacency matrix is built based on user input.
+
+4. `selected_node`: This list is initialized with `False` values to keep track of selected nodes. Initially, no nodes are selected, except for the first node (index 0), which is set to `True` to serve as a starting point for the MST.
+
+5. `no_edge = 0`: This variable keeps track of the number of edges in the MST.
+
+6. The code enters a loop to find the MST:
+   - It initializes `minimum` with a large value.
+   - Variables `a` and `b` are used to track the vertices corresponding to the edge with the minimum weight.
+   - The loop iterates through all vertices (indexed by `m`) to find the minimum-weight edge.
+   - Within the inner loop, it checks if the current vertex `m` is already selected (`selected_node[m]` is `True`) and if there is an edge to an unselected vertex (`not selected_node[n]` and `G[m][n]` is not zero).
+   - If these conditions are met, it checks if the weight of the edge from `m` to `n` is smaller than the current `minimum`. If it is, `minimum` is updated, and `a` and `b` are set to `m` and `n`, respectively.
+   - After finding the minimum-weight edge, it prints the edge and its weight, for example: "0-1: 2".
+   - The vertex `b` is marked as selected (`selected_node[b] = True`), and the `no_edge` counter is incremented.
+
+The code continues this process until it has selected `N - 1` edges, which ensures that it constructs a tree that spans all vertices (the MST). The selected edges are printed as they are found.
+
+The code effectively finds the Minimum Spanning Tree (MST) of the input graph using Prim's algorithm.
