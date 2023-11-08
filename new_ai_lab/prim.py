@@ -1,4 +1,4 @@
-DFS bfs
+#DFS bfs
 
 graph = {
     1: [4, 7, 9],
