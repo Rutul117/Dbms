@@ -1,0 +1,23 @@
+def solve(board,row,cols,ndiag,rdiag,asf):
+    if(row == len(board)):
+        print(asf , '.')
+        return
+    for col in range(len(board[0])):
+        if cols[col] == False and ndiag[row + col] == False and rdiag[row - col + len(board) - 1] == False:
+            board[row][col] = True
+            cols[col] = True
+            ndiag[row+col] = True
+            rdiag[row - col + len(board) - 1] = True
+            solve(board,row+1,cols,ndiag,rdiag, asf+ str(row) +'-'+ str(col) + ', ')
+            board[row][col] = False
+            cols[col] = False
+            ndiag[row + col] = False
+            rdiag[row - col + len(board) - 1] = False
+
+n = int(input("Enter the size of board N x N: "))
+board = [[False for _ in range(n)] for _ in range(n)]
+cols = [False for _ in range(n)]
+ndiag = [False for _ in range(2*n-1)]
+rdiag = [False for _ in range(2*n-1)]
+
+solve(board,0,cols,ndiag,rdiag,str(" "))
